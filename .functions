@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 count() {
   if [ "$1" = "-c" ]
   then
