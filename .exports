@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    nvm_cmds=(nvm node npm yarn gulp)
+    for cmd in "${nvm_cmds[@]}" ; do
+        alias $cmd="echo \"'nvm' loading... It's super slow, hold onto your hat...\" && unalias ${nvm_cmds[*]} && unset nvm_cmds && . $NVM_DIR/nvm.sh --no-use && load-nvmrc && $cmd"
+    done
+fi
+
+# Add Lunarvim to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# History management
+export HISTCONTROL=ignoreboth
+export HISTSIZE=5000
+export HISTIGNORE="clear:bg:fg:cd:cd -:cd ..:exit:date:w:* --help:ls:l:ll:lll"
+setopt HIST_IGNORE_ALL_DUPS
